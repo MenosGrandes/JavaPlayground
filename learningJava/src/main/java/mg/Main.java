@@ -4,6 +4,7 @@ import mg.coordinates.LiftCoordinates;
 import mg.coordinates.StargateDestination;
 import mg.transportable.Lift;
 import mg.transportable.Stargate;
+import org.openjdk.jmh.annotations.Benchmark;
 
 public class Main {
     public static void main( String[] args ) {
