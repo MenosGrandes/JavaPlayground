@@ -17,7 +17,7 @@ public class Sort {
             arr.set( j + 1, key );
         }
     }
-    public static     void bubbleSort( List<Integer> arr )
+    public static  void bubbleSort( List<Integer> arr )
     {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++)
