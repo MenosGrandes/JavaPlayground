@@ -1,6 +1,6 @@
 
 package mg.benchmark;
-
+/*
 import mg.sort.Sort;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -87,4 +88,4 @@ public class BenchmarkLoop {
     public void insertSortB(BenchmarkState state) {
         Sort.insertSort(state.testList);
     }
-}
+}*/
