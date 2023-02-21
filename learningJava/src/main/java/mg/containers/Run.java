@@ -8,11 +8,13 @@ public class Run {
     public static void main( String[] args ) {
 
         BagArray<Integer> a = new BagArray<>();
-        a.add(1);
-        a.add(13);
+        for(var i = 0; i < 10000;i++)
+        {
+            a.add(i);
+        }
         for(var c : a)
         {
-            System.out.println(c);
+            System.out.print(c + " ");
         }
 
         BagNode<Integer> bg= new BagNode<>();

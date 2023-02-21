@@ -25,6 +25,7 @@ public class Main {
 
 
 
+  */
         Stargate sg = new Stargate();
         sg.setEndCoordinates( new StargateDestination( new char[]{'a','v','c','d','1','d','4'} ));
         sg.move();

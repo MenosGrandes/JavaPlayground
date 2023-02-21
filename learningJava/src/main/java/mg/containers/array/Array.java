@@ -30,11 +30,11 @@ public class Array<T> implements  Iterable<T>{
     }
     public int getSize()
     {
-        return size;
+        return elements.length;
     }
     public boolean isEmpty()
     {
-        return size==0;
+        return elements.length==0;
     }
 
     private void enlarge() {
@@ -45,7 +45,7 @@ public class Array<T> implements  Iterable<T>{
 
     @SuppressWarnings("unchecked")
     public T get(int i) {
-        if (i>= size || i <0) {
+        if (i>= elements.length || i <0) {
             throw new IndexOutOfBoundsException("Index: " + i + ", Size " + i );
         }
         return (T) elements[i];
@@ -53,22 +53,20 @@ public class Array<T> implements  Iterable<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return new ArrayIterator(elements,size);
+        return new ArrayIterator(elements);
     }
     public  class ArrayIterator implements Iterator<T> {
         private final Object[] _array;
 
-        private final int size;
         private int internal_size = 0;
 
-        public ArrayIterator(Object[] array, int size) {
+        public ArrayIterator(Object[] array) {
             _array = array;
-            this.size = size;
         }
 
 
         public boolean hasNext()  {
-            return internal_size < size;
+            return internal_size < elements.length;
         }
 
         public T next() {
