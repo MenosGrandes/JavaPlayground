@@ -8,7 +8,7 @@ public class Run {
     public static void main( String[] args ) {
 
         Bag<Integer> a = new Bag<>(new Array() );
-        for(var i = 0; i < 10000;i++)
+        for(var i = 0; i < 100;i++)
         {
             a.add(i);
         }
@@ -16,14 +16,18 @@ public class Run {
         {
             System.out.print(c + " ");
         }
+        System.out.println("LINKED LIST!");
 
         Bag<Integer> bg= new Bag<>(new LinkedList());
-        bg.add(2);
-        bg.add(14);
+        for(var i = 0; i < 100;i++)
+        {
+            bg.add(i);
+        }
 
         for(var c : bg)
         {
-            System.out.println(c);
+            System.out.print(c + " ");
+
         }
         System.out.println(a.isEmpty());
     }
