@@ -1,13 +1,13 @@
 package mg.containers;
 
+import mg.containers.array.Array;
 import mg.containers.bag.Bag;
-import mg.containers.bag.BagArray;
-import mg.containers.bag.BagNode;
+import mg.containers.linked_list.LinkedList;
 
 public class Run {
     public static void main( String[] args ) {
 
-        Bag<Integer> a = new BagArray<>();
+        Bag<Integer> a = new Bag<>(new Array() );
         for(var i = 0; i < 10000;i++)
         {
             a.add(i);
@@ -17,7 +17,7 @@ public class Run {
             System.out.print(c + " ");
         }
 
-        BagNode<Integer> bg= new BagNode<>();
+        Bag<Integer> bg= new Bag<>(new LinkedList());
         bg.add(2);
         bg.add(14);
 

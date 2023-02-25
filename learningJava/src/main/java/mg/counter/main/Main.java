@@ -4,6 +4,8 @@ import mg.counter.AdvanceInt;
 import mg.counter.Counter;
 import mg.counter.CounterOne;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main( String[] args ) {
         CounterOne<Integer> c = new CounterOne<Integer>(new AdvanceInt(),0 );

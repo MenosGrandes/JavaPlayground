@@ -1,9 +1,9 @@
 
 package mg.containers;
 
+import mg.containers.array.Array;
 import mg.containers.bag.Bag;
-import mg.containers.bag.BagArray;
-import mg.containers.bag.BagNode;
+import mg.containers.linked_list.LinkedList;
 import mg.sort.Sort;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
@@ -48,7 +48,7 @@ public class Benchmark {
     @org.openjdk.jmh.annotations.Benchmark
     @Threads(Threads.MAX)
     public void bagArray(BenchmarkState plan, Blackhole bh) {
-        BagArray<Integer> ba = new BagArray<>();
+        Bag<Integer> ba = new Bag<>(new Array() );
        for(var i = 0 ; i < plan.listSize;i++)
        {
             ba.add(i);
@@ -58,7 +58,7 @@ public class Benchmark {
     @org.openjdk.jmh.annotations.Benchmark
     @Threads(Threads.MAX)
     public void bagNode(BenchmarkState plan, Blackhole bh) {
-        BagNode<Integer> ba = new BagNode<>();
+        Bag<Integer> ba = new Bag<>(new LinkedList() );
         for(var i = 0 ; i < plan.listSize;i++)
         {
             ba.add(i);
