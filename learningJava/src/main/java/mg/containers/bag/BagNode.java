@@ -2,7 +2,7 @@ package mg.containers.bag;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BagNode<Item> implements Iterable<Item>, Bag<Item>{
+public class BagNode<Item> extends Bag<Item> {
     private Node<Item> first;    // beginning of bag
     private int n;               // number of elements in bag
 
@@ -23,10 +23,10 @@ public class BagNode<Item> implements Iterable<Item>, Bag<Item>{
         return n;
     }
 
-    public void add(Item item) {
+    public void add( Object item) {
         Node<Item> oldfirst = first;
         first = new Node<Item>();
-        first.item = item;
+        first.item = (Item) item;
         first.next = oldfirst;
         n++;
     }

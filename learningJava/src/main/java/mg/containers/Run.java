@@ -7,7 +7,7 @@ import mg.containers.bag.BagNode;
 public class Run {
     public static void main( String[] args ) {
 
-        BagArray<Integer> a = new BagArray<>();
+        Bag<Integer> a = new BagArray<>();
         for(var i = 0; i < 10000;i++)
         {
             a.add(i);

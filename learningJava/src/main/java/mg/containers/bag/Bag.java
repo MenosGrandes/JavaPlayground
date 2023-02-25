@@ -1,9 +1,9 @@
 package mg.containers.bag;
 
+import mg.containers.container.AddableContainer;
+
+
 import java.util.Iterator;
 
-public interface Bag<T> {
-    public boolean isEmpty();
-    public int size();
-    public void add(T t);
+public abstract class Bag<T> implements AddableContainer {
 }

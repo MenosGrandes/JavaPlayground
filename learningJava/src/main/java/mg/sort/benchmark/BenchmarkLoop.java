@@ -1,5 +1,5 @@
 
-package mg.benchmark;
+package mg.sort.benchmark;
 /*
 import mg.sort.Sort;
 import org.openjdk.jmh.annotations.*;

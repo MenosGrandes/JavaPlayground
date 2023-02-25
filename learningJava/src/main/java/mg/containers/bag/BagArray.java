@@ -2,9 +2,8 @@ package mg.containers.bag;
 import mg.containers.array.Array;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
-public class BagArray<Item> implements Iterable<Item>, Bag<Item>{
+public class BagArray<Item> extends Bag<Item> {
     private Array<Item> container;
     public BagArray() {
         container = new Array<>();
@@ -14,16 +13,18 @@ public class BagArray<Item> implements Iterable<Item>, Bag<Item>{
     }
 
     public int size() {
-        return container.getSize();
+        return container.size();
     }
 
-    public void add(Item item) {
-        container.add(item);
+    @Override
+    public void add( Object item) {
+        container.add( (Item) item );
     }
 
     public Iterator<Item> iterator()  {
         return container.iterator();
     }
+
 
 }
 
