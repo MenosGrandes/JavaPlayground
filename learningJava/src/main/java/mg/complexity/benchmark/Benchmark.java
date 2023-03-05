@@ -25,7 +25,7 @@ public class Benchmark {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        @Param({"10000","100000","1000000"})
+        @Param({"100000","1000000","10000000","100000000"})
         public int listSize;
         public List<Integer> testList;
 

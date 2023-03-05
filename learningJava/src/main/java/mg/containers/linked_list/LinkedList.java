@@ -36,6 +36,11 @@ public class LinkedList<T> implements MutableContainerI<T> {
     }
 
     @Override
+    public Object[] getElements() {
+        return new Object[0];
+    }
+
+    @Override
     public void set( int position, T value ) {
 
     }

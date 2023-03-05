@@ -4,6 +4,7 @@ import mg.containers.container.AddableContainer;
 import mg.containers.container.MutableContainerI;
 
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Bag<T> implements AddableContainer {
@@ -23,6 +24,11 @@ public class Bag<T> implements AddableContainer {
     @Override
     public int size() {
         return container.size();
+    }
+
+    @Override
+    public Object[] getElements() {
+        return Arrays.copyOf(container.getElements(),container.size());
     }
 
     @Override

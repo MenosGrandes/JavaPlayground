@@ -1,6 +1,8 @@
 package mg.counter;
 
 
+import mg.counter.advance.Advancable;
+
 public abstract class Counter<T> implements CounterI<T>
 {
     protected  T value;

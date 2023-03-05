@@ -8,15 +8,29 @@ import java.util.NoSuchElementException;
 
 public class Array<T> implements SortableContainerI<T> {
     private int size = 0;
-    private static final int DEFAULT_CAPACITY = 10;
     private int capacity = DEFAULT_CAPACITY;
+
+    private static final int DEFAULT_CAPACITY = 10;
+
     private Object elements[];
     public Object[] getElements()
     {
-        return elements;
+        return Arrays.copyOf( elements, size);
+
     }
 
-    public Array() {elements = new Object[capacity]; }
+    public Array() {
+
+        elements = new Object[capacity];
+
+
+    }
+    public Array(Object[] t) {
+
+        elements = Arrays.copyOf( t,t.length );
+        size = t.length;
+
+    }
     public Array(int _capacity) {elements = new Object[_capacity]; }
 
     @Override
@@ -42,15 +56,16 @@ public class Array<T> implements SortableContainerI<T> {
 
     public boolean isEmpty()
     {
-        return elements.length==0;
+        return size==0;
     }
 
     @Override
     public int size() {
-        return elements.length;
+        return size;
     }
 
     private void enlarge() {
+        System.out.println("ENLARGE FROM" + elements.length + " TO" + elements.length*2);
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
         capacity = newSize;

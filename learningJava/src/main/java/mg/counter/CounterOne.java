@@ -1,5 +1,7 @@
 package mg.counter;
 
+import mg.counter.advance.Advancable;
+
 public class CounterOne<T> extends Counter<T>{
 
 
