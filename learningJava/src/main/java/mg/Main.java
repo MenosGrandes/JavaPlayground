@@ -23,69 +23,81 @@ public class Main {
 
         FileWriter fileWriter = new FileWriter(sortType.name() + "_" + samples + "_" + minN + "_" + maxN);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.printf("%-15s",sortType.name());
-        printWriter.println("");
-        printWriter.printf("|%-64s | %-64s| %-64s |","avarageCompares", "avarageLoops", "sizeOfVector");
-        printWriter.println("");
-        var floor =  new String(new char[64]).replace("\0", "-");
-        printWriter.printf("|%-64s | %-64s| %-64s|",floor, floor,floor);
-
+        printWriter.print("avarageCompares;avarageLoops;sizeOfVector");
         printWriter.println("");
 
         for (int i = minN; i < maxN; i++) {
+            System.out.println("START!" + i + sortType.name());
             var x = (int) Math.pow( 2, i );
             var avarageLoops = 0l;
             var avarageCompares = 0l;
             for (int s = 0; s < samples; s++) {
+                System.out.println("START sample !" + s + sortType.name());
+
                 CounterOne loopCounter = Counters.longStartFrom0();
                 CounterOne compareCounter = Counters.longStartFrom0();
 
                 Array<Integer> sortable = (Array<Integer>) ContainerGenerator.generateRandomArray( x );
-
-                switch (sortType) {
-                    case BubbleSort -> Sort.bubbleSort( sortable, loopCounter, compareCounter );
-                    case BubbleSortOp -> Sort.bubbleSort_o1( sortable, loopCounter, compareCounter );
-                    case DoubleBubbleSort -> Sort.doubleBubbleSort( sortable, loopCounter, compareCounter );
-
-                }
+                Sort.sort( sortType, sortable, loopCounter, compareCounter );
 
                 var b = IsSorted.isIt( sortable );
                 if ( !b ) {
-                    System.out.println( "NOT SORTED!" );
+                    System.out.println( "NOT SORTED!" + sortType.name());
                     break;
                 }
                 avarageLoops += (long) loopCounter.getValue();
                 avarageCompares += (long) compareCounter.getValue();
+                System.out.println("END sample !" + s + sortType.name());
 
             }
             avarageCompares /= samples;
             avarageLoops /= samples;
 
 
-            printWriter.printf("|%-64d | %-64d| %-64d|", avarageCompares, avarageLoops, x);
+            printWriter.printf(avarageCompares+";"+avarageLoops+";"+x);
+            printWriter.println("");
+            System.out.println("DONE! " + i + sortType.name());
         }
-        System.out.println("DON!");
+
         printWriter.close();
     }
 
     public static void main( String[] args ) throws InterruptedException {
 
         ExecutorService executor = Executors.newFixedThreadPool(4);
+        /*
         executor.execute( () -> {
             try {
-                runSortComaprision( SortType.BubbleSort, 2, 10, 11 );
+                runSortComaprision( SortType.BubbleSort, 2, 10, 16 );
             } catch (IOException e) {
                 throw new RuntimeException( e );
             }
         } );
         executor.execute( () -> {
             try {
-                runSortComaprision( SortType.BubbleSortOp, 2, 10, 12 );
+                runSortComaprision( SortType.BubbleSortOp, 2, 10, 16);
             } catch (IOException e) {
                 throw new RuntimeException( e );
             }
         } );
 
+         */
+        executor.execute( () -> {
+            try {
+                runSortComaprision( SortType.DoubleBubbleSort, 2, 10, 16 );
+            } catch (IOException e) {
+                throw new RuntimeException( e );
+            }
+        } );
+
+
+        executor.execute( () -> {
+            try {
+                runSortComaprision( SortType.QuickSort, 2, 10, 16 );
+            } catch (IOException e) {
+                throw new RuntimeException( e );
+            }
+        } );
         executor.shutdown();
         executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
 

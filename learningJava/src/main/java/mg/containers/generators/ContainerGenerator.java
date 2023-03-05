@@ -17,7 +17,7 @@ public class ContainerGenerator<T> {
 
         return sc;
     }
-    public static @NotNull SortableContainerI<Integer> generateRandomArray( int size)
+    public static SortableContainerI<Integer> generateRandomArray( int size)
     {
         Random rand = new Random();
 

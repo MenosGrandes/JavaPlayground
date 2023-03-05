@@ -16,14 +16,10 @@ public class Array<T> implements SortableContainerI<T> {
     public Object[] getElements()
     {
         return Arrays.copyOf( elements, size);
-
     }
 
     public Array() {
-
         elements = new Object[capacity];
-
-
     }
     public Array(Object[] t) {
 

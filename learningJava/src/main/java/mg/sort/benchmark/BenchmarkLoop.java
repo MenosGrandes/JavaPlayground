@@ -1,7 +1,12 @@
 
 package mg.sort.benchmark;
-/*
+
+import mg.containers.array.Array;
+import mg.containers.generators.ContainerGenerator;
+import mg.counter.CounterOne;
+import mg.counter.factory.Counters;
 import mg.sort.Sort;
+import mg.sort.SortType;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -19,24 +24,22 @@ import java.util.stream.Collectors;
 @State(Scope.Benchmark)
 @Fork(value = 2)
 //@Warmup(iterations = 3)
-@Measurement(iterations = 5)
+@Measurement(iterations = 2)
 public class BenchmarkLoop {
 
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        @Param({"100", "500", "1000","10000","100000","1000000"})
+        @Param({"10", "11", "12","13","14","15"})
         public int listSize;
 
-        public List<Integer> testList;
-
+        public Array<Integer> testList;
+        public CounterOne loopCounter,compareCounter;
         @Setup(Level.Trial)
         public void setUp() {
-            testList = new Random()
-                    .ints()
-                    .limit(listSize)
-                    .boxed()
-                    .collect(Collectors.toList());
+            testList = (Array<Integer>) ContainerGenerator.generateRandomArray( (int) Math.pow(2, listSize) );
+            loopCounter = Counters.longStartFrom0();
+            compareCounter = Counters.longStartFrom0();
         }
     }
 
@@ -51,41 +54,26 @@ public class BenchmarkLoop {
         new Runner(opt).run();
     }
 
-    void bubbleSort( List<Integer> arr )
-    {
-        int n = arr.size();
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if ( arr.get( j ) > arr.get( j + 1 ) ) {
-                    // swap arr[j+1] and arr[j]
-                    int temp = arr.get( j );
-                    arr.set( j, arr.get( j + 1 ) );
-                    arr.set( j + 1, temp );
-                }
-    }
-    void insertSort( List<Integer> arr )
-    {
-        int n = arr.size();
-        for (int i = 1; i < n; ++i) {
-            int key = arr.get( i );
-            int j = i - 1;
 
-            while (j >= 0 && arr.get( j ) > key) {
-                arr.set( j + 1, arr.get( j ) );
-                j = j - 1;
-            }
-            arr.set( j + 1, key );
-        }
-    }
 
     @Benchmark
     @Threads(Threads.MAX)
     public void bubbleSortB(BenchmarkState state) {
-        Sort.bubbleSort(state.testList);
+        Sort.sort( SortType.BubbleSort,state.testList,state.loopCounter, state.compareCounter);
     }
     @Benchmark
     @Threads(Threads.MAX)
-    public void insertSortB(BenchmarkState state) {
-        Sort.insertSort(state.testList);
+    public void bubbleSortOp(BenchmarkState state) {
+        Sort.sort( SortType.BubbleSortOp,state.testList,state.loopCounter, state.compareCounter);
     }
-}*/
+    @Benchmark
+    @Threads(Threads.MAX)
+    public void quickSort(BenchmarkState state) {
+        Sort.sort( SortType.QuickSort,state.testList,state.loopCounter, state.compareCounter);
+    }
+    @Benchmark
+    @Threads(Threads.MAX)
+    public void doubleBubbleSort(BenchmarkState state) {
+        Sort.sort( SortType.DoubleBubbleSort,state.testList,state.loopCounter, state.compareCounter);
+    }
+}

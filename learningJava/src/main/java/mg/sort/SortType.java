@@ -3,5 +3,6 @@ package mg.sort;
 public enum SortType {
     BubbleSort,
     BubbleSortOp,
-    DoubleBubbleSort
+    DoubleBubbleSort,
+    QuickSort
 }
