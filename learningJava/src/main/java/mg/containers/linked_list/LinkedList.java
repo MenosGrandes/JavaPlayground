@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements MutableContainerI<T> {
-    private Node<T> first;    // beginning of bag
+    private Node<T> first;    // beginning of LinkedList
     protected int size = 0;
     public LinkedList() {
         first = null;
@@ -23,6 +23,12 @@ public class LinkedList<T> implements MutableContainerI<T> {
         first.item = (T) value;
         first.next = oldfirst;
         size++;
+    }
+    public Node<T> pool()
+    {
+        Node<T> oldfirst = first;
+
+        return first;
     }
 
     @Override

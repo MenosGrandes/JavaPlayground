@@ -6,28 +6,28 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Array<T> implements SortableContainerI<T> {
+public class Array<T> implements SortableContainerI<T>  {
     private int size = 0;
     private int capacity = DEFAULT_CAPACITY;
 
     private static final int DEFAULT_CAPACITY = 10;
 
-    private Object elements[];
+    private T elements[];
     public Object[] getElements()
     {
         return Arrays.copyOf( elements, size);
     }
 
     public Array() {
-        elements = new Object[capacity];
+        elements = (T[]) new Object[capacity];
     }
     public Array(Object[] t) {
 
-        elements = Arrays.copyOf( t,t.length );
+        elements = (T[]) Arrays.copyOf( t,t.length );
         size = t.length;
 
     }
-    public Array(int _capacity) {elements = new Object[_capacity]; }
+    public Array(int _capacity) {elements = (T[]) new Object[_capacity]; }
 
     @Override
     public void add(T e) {
@@ -76,15 +76,15 @@ public class Array<T> implements SortableContainerI<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new ArrayIterator(elements, size);
+        return new ArrayIterator( (T[]) elements, size);
     }
-    public  class ArrayIterator implements Iterator<T> {
-        private final Object[] array;
+    public final class ArrayIterator implements Iterator<T> {
+        private final T[] array;
         private int size = 0;
 
         private int internal_size = 0;
 
-        public ArrayIterator(Object[] _array, int _size) {
+        public ArrayIterator(T[] _array, int _size) {
             array = _array;
             size = _size;
         }
